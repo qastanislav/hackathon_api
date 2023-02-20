@@ -1,0 +1,203 @@
+{
+    "swagger": "2.0",
+    "basePath": "/",
+    "paths": {
+        "/get": {
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/CheckResponse"
+                        },
+                        "headers": {
+                            "Authorization": {
+                                "description": "Admin token",
+                                "required": true,
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "operationId": "post_get",
+                "parameters": [
+                    {
+                        "name": "payload",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/CheckRequest"
+                        }
+                    }
+                ],
+                "security": [
+                    {
+                        "apiKey": []
+                    }
+                ],
+                "tags": [
+                    "default"
+                ]
+            }
+        },
+        "/help": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/TextResponse"
+                        },
+                        "headers": {
+                            "Authorization": {
+                                "description": "Admin token",
+                                "required": true,
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "operationId": "get_get",
+                "security": [
+                    {
+                        "apiKey": []
+                    }
+                ],
+                "tags": [
+                    "default"
+                ]
+            }
+        },
+        "/login": {
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/LoginResponse"
+                        }
+                    }
+                },
+                "operationId": "post_login",
+                "parameters": [
+                    {
+                        "name": "payload",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/LoginRequest"
+                        }
+                    }
+                ],
+                "tags": [
+                    "default"
+                ]
+            }
+        },
+        "/post": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/TextResponse"
+                        },
+                        "headers": {
+                            "Authorization": {
+                                "description": "Admin token",
+                                "required": true,
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "operationId": "get_post",
+                "security": [
+                    {
+                        "apiKey": []
+                    }
+                ],
+                "tags": [
+                    "default"
+                ]
+            }
+        }
+    },
+    "info": {
+        "title": "My API",
+        "version": "1.0",
+        "description": "Hi hi, looks like you are good one, lets see how you will pass your next challenge. Now you see a little confusing API. You should make three requests in correct order and get \u0443\u0446\u0442\u0441\u043a\u043d\u0437\u0435\u0443\u0432 \u0435\u0443\u0447\u0435"
+    },
+    "produces": [
+        "application/json"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "tags": [
+        {
+            "name": "default",
+            "description": "Default namespace"
+        }
+    ],
+    "definitions": {
+        "LoginRequest": {
+            "required": [
+                "password",
+                "username"
+            ],
+            "properties": {
+                "username": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "LoginResponse": {
+            "properties": {
+                "token": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "TextResponse": {
+            "properties": {
+                "text": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "CheckRequest": {
+            "required": [
+                "parameter"
+            ],
+            "properties": {
+                "parameter": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "CheckResponse": {
+            "properties": {
+                "message": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "responses": {
+        "ParseError": {
+            "description": "When a mask can't be parsed"
+        },
+        "MaskError": {
+            "description": "When any error occurs on mask"
+        }
+    }
+}
